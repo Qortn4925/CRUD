@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -40,9 +41,13 @@ public class BoardController {
     }
 
     @GetMapping("list")
-    public void listBoard(Model model){
-        List<Board> list = service.list();
+    public void listBoard(Model model , @RequestParam(name ="page",defaultValue = "1") Integer page){
+
+        List<Board> list = service.list(page);
+
         model.addAttribute("boardList",list);
+
+
     }
 
     @GetMapping("view")
@@ -52,9 +57,11 @@ public class BoardController {
     }
 
     @PostMapping("delete")
-    public String deleteBoard(Integer id ){
+    public String deleteBoard(Integer id , RedirectAttributes rttr ){
         service.remove(id);
 
+        rttr.addFlashAttribute("message", Map.of("type","sucess" ,
+                "text" ,"새 게시글이 등록 되었습니다") );
         return "redirect:/board/list";
     }
     @GetMapping("edit")
@@ -66,6 +73,8 @@ public class BoardController {
     public String editBoard(Board board, RedirectAttributes rttr){
         service.update(board);
         System.out.println(board);
+        rttr.addFlashAttribute("message", Map.of("type","sucess" ,
+                "text" ,"새 게시글이 등록 되었습니다") );
         rttr.addAttribute("id",board.getId());
         return  "redirect:/board/view";
     }

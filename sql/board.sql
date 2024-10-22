@@ -12,3 +12,12 @@ create table board(
 );
 
 select  * from board;
+
+
+INSERT INTO  board
+(title, content ,writer)
+select title,content,writer
+from board;
+
+select*
+from board;
