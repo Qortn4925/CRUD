@@ -9,6 +9,8 @@
 <h2> 게시물 목록</h2>
 
 <table>
+  
+  <c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
     <thead>
     <tr>
       <th>번호</th>
