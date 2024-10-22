@@ -24,5 +24,13 @@
         작성일시
     <input type="text" value="${board.inserted}">
   </div>
+
+  <div>
+    <form action="/board/delete" method="post">
+      <input type="hidden" name="id" value="${board.id}">
+      <button> 삭제</button>
+    </form>
+  </div>
+<a href="/board/edit?id=${board.id}"> 수정</a>
 </body>
 </html>

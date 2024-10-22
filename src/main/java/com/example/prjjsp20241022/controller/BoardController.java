@@ -43,4 +43,14 @@ public class BoardController {
         model.addAttribute("board",board);
     }
 
+    @PostMapping("delete")
+    public String deleteBoard(Integer id ){
+        service.remove(id);
+
+        return "redirect:/board/list";
+    }
+    @GetMapping("edit")
+    public void editBoard(Integer id , Model model){
+        model.addAttribute("board",service.get(id));
+    }
 }
