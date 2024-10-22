@@ -1,10 +1,7 @@
 package com.example.prjjsp20241022.mapper;
 
 import com.example.prjjsp20241022.dto.Board;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -40,4 +37,12 @@ public interface BoardMapper {
     where id =#{id}
 """)
     void delete(Integer id);
+
+
+    @Update("""
+        UPDATE board
+                    set  title=#{title},content=#{content},writer=#{writer}
+        where id =#{id}
+""")
+    void update(Board board);
 }

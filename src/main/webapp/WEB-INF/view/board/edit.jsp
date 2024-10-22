@@ -11,13 +11,13 @@
 
 <form action="" method="post">
    <div>제목
-     <input type="text" value="${board.title}">
+     <input type="text" name="title" value="${board.title}">
    </div>
   <div> 본문
-    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <textarea name="content" id="" cols="30" rows="10"></textarea>
    ${board.content}</div>
   <div> 작성자
-    <input type="text" value="${board.writer}">
+    <input type="text" name="writer" value="${board.writer}">
   </div>
 
   <div>
