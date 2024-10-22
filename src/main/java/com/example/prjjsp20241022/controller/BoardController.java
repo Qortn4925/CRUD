@@ -24,12 +24,15 @@ public class BoardController {
     public void newBoard(){}
 
     @PostMapping("new")
-    public String newBoard(Board board){
+    public String newBoard(Board board ,RedirectAttributes rttr){
         service.add(board);
         System.out.println(board);
 
+        rttr.addAttribute("id", board.getId());
+
             // 이거 안하면 포스트 방식이라 새로고침 하면 테이블 계속 들어감
-        return "redirect:/board/list";
+
+        return "redirect:/board/view";
     }
 
     @GetMapping("list")

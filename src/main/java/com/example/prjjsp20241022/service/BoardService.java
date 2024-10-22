@@ -14,6 +14,7 @@ import java.util.List;
 public class BoardService {
         private final BoardMapper mapper;
 
+
     public void add(Board board) {
         mapper.insert(board);
     }
