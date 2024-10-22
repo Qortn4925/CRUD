@@ -27,4 +27,10 @@ public interface BoardMapper {
     ORDER BY id DESC
 """)
     List<Board> selectAll();
+
+    @Select("""
+    select * from board
+    WHERE id =#{id}
+    """)
+    Board selectById(Integer id);
 }

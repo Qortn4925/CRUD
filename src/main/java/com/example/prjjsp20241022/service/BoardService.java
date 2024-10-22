@@ -22,4 +22,8 @@ public class BoardService {
         // List<Board> list= mapper.selectAll();
         return mapper.selectAll();
     }
+
+    public Board get(Integer id) {
+        return mapper.selectById(id);
+    }
 }
