@@ -7,6 +7,8 @@
 <body>
   <c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
 
+
+
   <h2> 게시글 보기</h2>
   <div>
     제목
