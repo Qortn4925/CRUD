@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -21,12 +22,25 @@ public class BoardService {
 
 
 
-    public List<Board> list(Integer page) {
+    public Map<String,Object> list(Integer page) {
         // List<Board> list= mapper.selectAll();
         // g한 페이지 10개
         Integer offset = (page - 1) * 10;
-        List<Board> list= mapper.selectAllPaging(offset);
-        return list;
+
+
+
+        //페이지 관련 정보들
+        // 총 레코드 수
+        Integer countAll= mapper.countAll();
+        // 마지막 페이지
+        Integer lastPageNumber =  (countAll-1) /10 +1;
+
+        Map<Board> list = mapper.selectAllPaging(offset);
+
+        map<String, Object>
+        map.put("lastPageNumber", lastPageNumber);
+        map.put("boardList",list);
+        return map;
     }
 
     public Board get(Integer id) {

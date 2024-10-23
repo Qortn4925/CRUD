@@ -43,9 +43,9 @@ public class BoardController {
     @GetMapping("list")
     public void listBoard(Model model , @RequestParam(name ="page",defaultValue = "1") Integer page){
 
-        List<Board> list = service.list(page);
+        Map<String,Object> result = service.list(page);
+        model.addAllAttributes(result);
 
-        model.addAttribute("boardList",list);
 
 
     }

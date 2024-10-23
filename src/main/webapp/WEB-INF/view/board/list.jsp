@@ -33,7 +33,7 @@
 
 <div>
 <%--     pagination --%>
-    <:c:forEach begin="1" end="15" var="pageNumber">
+    <:c:forEach begin="1" end="${lastPageNumber}" var="pageNumber">
 
     <a href="/boar/list?page=${pageNumber}"> </a> ${pageNumber}
 
