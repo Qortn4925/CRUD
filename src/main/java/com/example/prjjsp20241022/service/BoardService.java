@@ -46,17 +46,20 @@ public class BoardService {
         Integer nextPageNumber = rightPageNumber + 1;
         Integer previousPageNumber = leftPageNumber - 1;
 
+        Boolean hasNextPage =nextPageNumber < lastPageNumber;   // 다음 버튼 존재 유무
+        Boolean  hasPrevPage = previousPageNumber > 0;    // 이전 버튼 존재 유뮤
         // 오른쪽 끝 페이지는 마지막 페이지 보다 클 수 없음
         rightPageNumber =Math.min(rightPageNumber,lastPageNumber);
         Map<String,Object> pageInfo =new HashMap<>();
 
+        pageInfo.put("hasNextPage",hasNextPage);
+        pageInfo.put("hasPrevPage",hasPrevPage);
         pageInfo.put("nextPageNumber",nextPageNumber);
         pageInfo.put("previousPageNumber",previousPageNumber);
         pageInfo.put("rightPageNumber",rightPageNumber);
 pageInfo.put("leftPageNumber",leftPageNumber);
         pageInfo.put("lastPageNumber", lastPageNumber);
         pageInfo.put("currentPageNumber", page);
-
 
         map.put("pageInfo",pageInfo);
         map.put("boardList", list);

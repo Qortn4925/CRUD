@@ -40,8 +40,9 @@
 
 <div>
 <%--    dlwjs--%>
+    <c:if test="${pageInfo.hasPrevPage}">
     <a href="/board/list?page=${pageInfo.previoudPageNumber}">이전 </a>
-
+    </c:if>
     <%--     pagination --%>
     <c:forEach begin="${pageInfo.leftPageNumber}"
                end="${pageInfo.rightPageNumber}"
@@ -51,8 +52,9 @@
         </a>
     </c:forEach>
 
+    <c:if test="${pageInfo.hasNextPage}">
     <a href="/board/list?page=${pageInfo.nextPageNumber}">다음 </a>
-
+    </c:if>
 
 
 </div>
