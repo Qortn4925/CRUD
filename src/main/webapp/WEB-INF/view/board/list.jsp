@@ -3,6 +3,11 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        .active{
+            background-color: yellow;
+        }
+    </style>
 </head>
 <body>
 
@@ -34,13 +39,21 @@
 </table>
 
 <div>
+<%--    dlwjs--%>
+    <a href="/board/list?page=${pageInfo.previoudPageNumber}">이전 </a>
+
     <%--     pagination --%>
     <c:forEach begin="${pageInfo.leftPageNumber}"
                end="${pageInfo.rightPageNumber}"
                var="pageNumber">
-        <a href="/board/list?page=${pageNumber}"> ${pageNumber}</a>
-
+        <a class =${pageInfo.currentPageNumber == pageNumber?'active':''} href="/board/list?page=${pageNumber}">
+                ${pageNumber}
+        </a>
     </c:forEach>
+
+    <a href="/board/list?page=${pageInfo.nextPageNumber}">다음 </a>
+
+
 
 </div>
 
