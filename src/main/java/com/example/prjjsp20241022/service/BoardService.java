@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,17 +30,27 @@ public class BoardService {
 
 
 
-        //페이지 관련 정보들
-        // 총 레코드 수
-        Integer countAll= mapper.countAll();
-        // 마지막 페이지
-        Integer lastPageNumber =  (countAll-1) /10 +1;
+        List<Board> list = mapper.selectAllPaging(offset);
 
-        Map<Board> list = mapper.selectAllPaging(offset);
+        // Controller에게 넘겨 줄 정보들을 담을 map
+        Map<String, Object> map = new HashMap<>();
 
-        map<String, Object>
-        map.put("lastPageNumber", lastPageNumber);
-        map.put("boardList",list);
+        // 페이지 관련 정보들
+        Integer countAll = mapper.countAll();
+        Integer lastPageNumber = (countAll - 1) / 10 + 1; // 마지막 페이지 번호
+
+        Integer rightPageNumber = ( (page-1) / 10 +1)*10 ;
+        Integer leftPageNumber = rightPageNumber - 9;
+        Map<String,Object> pageInfo =new HashMap<>();
+
+
+        pageInfo.put("rightPageNumber",rightPageNumber);
+pageInfo.put("leftPageNumber",leftPageNumber);
+        pageInfo.put("lastPageNumber", lastPageNumber);
+
+        map.put("pageInfo",pageInfo);
+        map.put("boardList", list);
+
         return map;
     }
 
