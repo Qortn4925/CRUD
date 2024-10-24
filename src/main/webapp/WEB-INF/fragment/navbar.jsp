@@ -28,6 +28,13 @@
                             회원가입
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="/member/list" class="nav-link">
+                            <i class="fa-solid fa-users-between-lines"></i>
+                            회원목록
+                        </a>
+                    </li>
                 </ul>
 
             </div>
