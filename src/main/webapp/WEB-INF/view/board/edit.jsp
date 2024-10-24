@@ -14,25 +14,33 @@
 <c:import url="/WEB-INF/fragment/navbar.jsp">
     <c:param name="active" value="list" />
 </c:import>
-<h2> ${board.id} 수정</h2>
 
-<form action="" method="post">
-   <div>제목
-     <input type="text" name="title" value="${board.title}">
-   </div>
-  <div> 본문
-    <textarea name="content" id="" cols="30" rows="10">${board.content}</textarea>
-   </div>
-  <div> 작성자
-    <input type="text" name="writer" value="${board.writer}">
-  </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+<h2> ${board.id}번 아이디 게시글 수정</h2>
 
-  <div>
-  <button> 저장</button>
-  </div>
+            <form action="" method="post">
+                <div class="mb-3" >
+                    <label for="inputTitle1" class="form-label">제목</label>
+                    <input class="form-control"type="text" id="inputTitle1" name="title" value="${board.title}">
+               </div>
+              <div class="mb-3" >
+                  <label for="textContent1" class="form-label">본문</label>본문
+                <textarea class="form-control" name="content" id="textContent1"  rows="10">${board.content}</textarea>
+               </div>
+              <div class="mb-3" >
+                  <label for="inputWriter1" class="form-label">작성자</label>
+                <input class="form-control" type="text" id="inputWriter1" name="writer" value="${board.writer}">
+              </div>
 
-
-</form>
+              <div class="mb-3" >
+              <button class="btn btn-primary"> <i class="fa-solid fa-floppy-disk"></i>저장</button>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

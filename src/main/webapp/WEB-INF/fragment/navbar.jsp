@@ -30,8 +30,8 @@
 
  <c:if test="${not empty message}">
      <div class="container ">
-         <div class="row">
-             <div class="col md-6  col-xl-6">
+         <div class="row justify-content-center">
+             <div class="col md-8  col-xl-6">
                  <div class="alert alert-${message.type} alert-dismissible fade show">
                      ${message.text}
                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
