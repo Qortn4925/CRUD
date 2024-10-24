@@ -30,7 +30,7 @@ public class BoardController {
         service.add(board);
         System.out.println(board);
 
-        rttr.addFlashAttribute("message", Map.of("type","sucess" ,
+        rttr.addFlashAttribute("message", Map.of("type","success" ,
                 "text" ,"새 게시글이 등록 되었습니다") );
 
         rttr.addAttribute("id", board.getId());
@@ -60,7 +60,7 @@ public class BoardController {
     public String deleteBoard(Integer id , RedirectAttributes rttr ){
         service.remove(id);
 
-        rttr.addFlashAttribute("message", Map.of("type","sucess" ,
+        rttr.addFlashAttribute("message", Map.of("type","success" ,
                 "text" ,"새 게시글이 등록 되었습니다") );
         return "redirect:/board/list";
     }
@@ -73,8 +73,8 @@ public class BoardController {
     public String editBoard(Board board, RedirectAttributes rttr){
         service.update(board);
         System.out.println(board);
-        rttr.addFlashAttribute("message", Map.of("type","sucess" ,
-                "text" ,"새 게시글이 등록 되었습니다") );
+        rttr.addFlashAttribute("message", Map.of("type","success" ,
+                "text" ,"게시글 수정 완료.") );
         rttr.addAttribute("id",board.getId());
         return  "redirect:/board/view";
     }

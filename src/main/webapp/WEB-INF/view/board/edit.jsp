@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
-
+<c:import url="/WEB-INF/fragment/navbar.jsp">
+    <c:param name="active" value="list" />
+</c:import>
 <h2> ${board.id} 수정</h2>
 
 <form action="" method="post">
@@ -20,8 +21,8 @@
      <input type="text" name="title" value="${board.title}">
    </div>
   <div> 본문
-    <textarea name="content" id="" cols="30" rows="10"></textarea>
-   ${board.content}</div>
+    <textarea name="content" id="" cols="30" rows="10">${board.content}</textarea>
+   </div>
   <div> 작성자
     <input type="text" name="writer" value="${board.writer}">
   </div>

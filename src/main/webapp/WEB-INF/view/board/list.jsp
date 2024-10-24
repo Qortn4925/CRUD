@@ -11,18 +11,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
 <h2> 게시물 목록</h2>
 
-<table>
 
+
+<div class="table">
     <c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
+
+    <div>
+        <div>
+
+<table class="table">
+
     <thead>
     <tr>
         <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성 일시</th>
+        <th class="w-50">제목</th>
+        <th><i class="fa-solid fa-user"></i></th>
+        <th class="d-none d-lg-table-cell"><i class="fa-solid fa-calendar-days"></i></th>
     </tr>
     </thead>
     <tbody>
@@ -33,11 +39,17 @@
                 <a href="/board/view?id=${board.id}">${board.title} </a>
             </td>
             <td> ${board.writer}</td>
-            <td> ${board.inserted}</td>
+            <td class="d-none d-lg-table-cell"> ${board.inserted}</td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+
+        </div>
+    </div>
+</div>
+
+
 
 <div>
 <%--    dlwjs--%>
