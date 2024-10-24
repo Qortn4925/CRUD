@@ -61,7 +61,7 @@ public class BoardController {
         service.remove(id);
 
         rttr.addFlashAttribute("message", Map.of("type","success" ,
-                "text" ,"새 게시글이 등록 되었습니다") );
+                "text" ,"게시글 삭제 되었습니다") );
         return "redirect:/board/list";
     }
     @GetMapping("edit")
@@ -69,10 +69,10 @@ public class BoardController {
         model.addAttribute("board",service.get(id));
     }
 
+
     @PostMapping("edit")
     public String editBoard(Board board, RedirectAttributes rttr){
         service.update(board);
-        System.out.println(board);
         rttr.addFlashAttribute("message", Map.of("type","success" ,
                 "text" ,"게시글 수정 완료.") );
         rttr.addAttribute("id",board.getId());

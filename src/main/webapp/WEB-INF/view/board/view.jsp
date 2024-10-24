@@ -44,8 +44,15 @@
               <button type="button" form="deleteForm1"  class="btn btn-outline-danger"
                       data-bs-toggle="modal" data-bs-target="#deleteControlModal">
                 삭제</button>
-            <a class="btn btn-primary" href="/board/edit?id=${board.id}"> 수정</a>
+            <button type="button" form="updateForm1" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+              수정</button>
           </div>
+
+
+          <form id="updateForm1" action="/board/edit" method="get">
+             <input type="hidden" name="id" value="${board.id}">
+          </form>
 
           <form id ="deleteForm1" action="/board/delete" method="post">
             <input type="hidden" name="id" value="${board.id}">
@@ -55,6 +62,7 @@
     </div>
   </div>
 
+<%--  삭제 모달 창--%>
   <div class="modal fade" id="deleteControlModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -72,6 +80,25 @@
       </div>
     </div>
   </div>
+<%-- 수정 모달 창--%>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">수정 창</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ${board.id}번 게시물을 수정하시겠습니까 ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          <button  form="updateForm1" class="btn btn-primary" >  수정</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
