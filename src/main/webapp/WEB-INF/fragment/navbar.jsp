@@ -23,6 +23,7 @@
                         <a class="nav-link ${param.active=='list'?'active':''}" href="/board/new"><i class="fa-solid fa-file-pen"></i></i>작성</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
