@@ -61,4 +61,11 @@ public interface MemberMapper {
 """
     )
     Member selectByIdAndPassword(String id, String password);
+
+    @Select("""
+    select name
+    from auth
+    where id = #{id}
+""")
+    List<String> selectAuthById(String id);
 }

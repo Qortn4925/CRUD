@@ -37,17 +37,24 @@ public class MemberController {
 
 
     @GetMapping("list")
-    public String  abc(Model model ,@SessionAttribute(value = "loggedInMember",required = false) Member member,RedirectAttributes rttr){
-        if(member != null) {
-            List<Member> members = service.viewMember();
-            model.addAttribute("memberList", members);
-            return  null;
-        }else{
-            rttr.addFlashAttribute("message", Map.of
-                    ("type","warning" ,"text","로그인 한 사용자만 이용하실 수 있습니다.")
-            );
-            return "redirect:/member/login";
-        }
+    public String  abc(Model model ,
+                       @SessionAttribute(value = "loggedInMember",required = false)
+                       Member member,RedirectAttributes rttr){
+
+            if( member !=null && member.getAuth().contains("admin")) {
+                List<Member> members = service.viewMember();
+                model.addAttribute("memberList", members);
+                return  null;
+
+            }else {
+
+                rttr.addFlashAttribute("message", Map.of
+                        ("type", "warning", "text", "로그인 한 사용자만 이용하실 수 있습니다.")
+                );
+                return "redirect:/member/login";
+
+            }
+
     }
 
     @GetMapping("view")

@@ -9,7 +9,7 @@
 
 <c:set value="${not empty sessionScope.loggedInMember}" var="loggedIn"/>
 <c:set value="${ empty sessionScope.loggedInMember}" var="loggedOut"/>
-
+<c:set value="${sessionScope.loggedInMember.auth.contains('adimin')}" var="isAdmin"/>
 <div class="mb-4">
     <nav class="navbar primary bg-primary navbar-expand-lg ">
         <div class="container">
@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     </c:if>
-                    <c:if test="${loggedIn}">
+                    <c:if test="${loggedIn && isAdmin}">
                     <li class="nav-item">
                         <a href="/member/list" class="nav-link">
                             <i class="fa-solid fa-users-between-lines"></i>

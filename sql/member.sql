@@ -13,3 +13,19 @@ create table member
 
 select *
 from member;
+
+
+#권한 테이블
+create table auth
+(
+    id   varchar(50) REFERENCES member (id),
+    name varchar(100) not null,
+#  한명이 여러 권한일 수 있는걸 가정하에 > 그래서 기본키임
+    primary key (id, name)
+);
+
+insert into auth(id, name) values
+                               ('ad','admin'),
+                               ('bd','admin');
+select *
+from auth;
