@@ -46,10 +46,10 @@ public interface BoardMapper {
 
     @Update("""
         UPDATE board
-                    set  title=#{title},content=#{content},writer=#{writer}
+                    set  title=#{title},content=#{content}
         where id =#{id}
 """)
-    void update(Board board);
+    int update(Board board);
 
     @Select("""
     select * from board

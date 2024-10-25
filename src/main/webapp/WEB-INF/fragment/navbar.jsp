@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--로그인 여부 --%>
-<c:set value="${not empty sessionScope.loggedInMember}" var="loggedIn"/>
-<c:set value="${ empty sessionScope.loggedInMember}" var="loggedOut"/>
-
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
+
+<c:set value="${not empty sessionScope.loggedInMember}" var="loggedIn"/>
+<c:set value="${ empty sessionScope.loggedInMember}" var="loggedOut"/>
+
 <div class="mb-4">
     <nav class="navbar primary bg-primary navbar-expand-lg ">
         <div class="container">
@@ -70,8 +71,15 @@
                     </li>
                     </c:if>
                     <li>
-<%--                             TODO: 지우거나 업데이트할 것..--%>
-                            로그인:${sessionScope.loggedInMember.id}
+
+    <c:if test="${loggedIn}">
+                    <li class="nav-item">
+                        <a href="/member/view?id=${sessionScope.loggedInMember.id}" class="nav-link">
+                            <i class="fa-regular fa-address-card"></i>
+                                ${sessionScope.loggedInMember.id}
+                        </a>
+                    </li>
+                    </c:if>
                     </li>
                 </ul>
 

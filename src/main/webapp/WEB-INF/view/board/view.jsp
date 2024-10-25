@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set value="${sessionScope.loggedInMember.id==board.writer}" var="hasAccess"/>
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -15,7 +15,7 @@
   <c:import url="/WEB-INF/fragment/navbar.jsp">
   <c:param name="active" value="new"/>
   </c:import>
-
+  <c:set value="${sessionScope.loggedInMember.id==board.writer}" var="hasAccess"/>
   <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -48,20 +48,21 @@
                   삭제
                 </button>
             </c:if>
-            <button type="button" form="updateForm1" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">
-              수정</button>
+            <a class="btn btn-outline-primary" href="/board/edit?id=${board.id}">
+              <i class="fa-solid fa-pen-to-square"></i>
+              수정
+            </a>
           </div>
 
-<c:if test="${hasAccess}">
-          <form id="updateForm1" action="/board/edit" method="get">
+          <form id="updateForm1" action="/board/edit?id=${board.id}" method="post">
              <input type="hidden" name="id" value="${board.id}">
           </form>
-</c:if>
-          <form id ="deleteForm1" action="/board/delete" method="post">
+
+          <c:if test="${hasAccess}">
+          <form id ="deleteForm1" action="/board/delete?" method="post">
             <input type="hidden" name="id" value="${board.id}">
           </form>
-
+</c:if>
       </div>
     </div>
   </div>
@@ -86,24 +87,8 @@
                 </div>
               </div>
             </c:if>
+
 <%-- 수정 모달 창--%>
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">수정 창</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    ${board.id}번 게시물을 수정하시겠습니까 ?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button  form="updateForm1" class="btn btn-primary" >  수정</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

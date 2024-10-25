@@ -92,11 +92,22 @@ public class BoardController {
 
 
     @PostMapping("edit")
-    public String editBoard(Board board, RedirectAttributes rttr){
-        service.update(board);
-        rttr.addFlashAttribute("message", Map.of("type","success" ,
-                "text" ,"게시글 수정 완료.") );
-        rttr.addAttribute("id",board.getId());
-        return  "redirect:/board/view";
+    public String editBoard(Board board, RedirectAttributes rttr
+    ,@SessionAttribute("loggedInMember") Member member
+    ){
+        try {
+            service.update(board, member);
+            rttr.addFlashAttribute("message", Map.of("type", "success",
+                    "text", "게시글 수정 완료."));
+            rttr.addAttribute("id", board.getId());
+            return "redirect:/board/view";
+        }catch (RuntimeException e){
+            //
+            rttr.addFlashAttribute("message", Map.of("type", "danger",
+                    "text", board.getId()+"게시글 수정중 문제가 발생"));
+            return "redirect:/board/view";
+        }
     }
+
+
 }
