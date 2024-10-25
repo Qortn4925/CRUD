@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -40,9 +37,17 @@ public class MemberController {
 
 
     @GetMapping("list")
-    public void  abc(Model model){
-        List<Member> members = service.viewMember();
-        model.addAttribute("memberList", members);
+    public String  abc(Model model ,@SessionAttribute(value = "loggedInMember",required = false) Member member,RedirectAttributes rttr){
+        if(member != null) {
+            List<Member> members = service.viewMember();
+            model.addAttribute("memberList", members);
+            return  null;
+        }else{
+            rttr.addFlashAttribute("message", Map.of
+                    ("type","warning" ,"text","로그인 한 사용자만 이용하실 수 있습니다.")
+            );
+            return "redirect:/member/login";
+        }
     }
 
     @GetMapping("view")
