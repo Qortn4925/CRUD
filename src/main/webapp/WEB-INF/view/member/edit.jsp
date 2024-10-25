@@ -18,7 +18,7 @@
                   회원 정보 수정
               </h2>
 
-              <form action="/member/edit" method="post">
+              <form  id="updateForm1" action="/member/edit" method="post">
                   <div class="mb-3">
                       <label for="inputId1" class="form-label">
                           아이디
@@ -45,7 +45,7 @@
                       >${member.description}</textarea>
                   </div>
                   <div class="mb-3">
-                      <button class="btn btn-primary">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateConfirmModal1">
                           <i class="fa-regular fa-floppy-disk"></i>
                           저장
                       </button>
@@ -55,6 +55,30 @@
       </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="updateConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      저장 확인
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  ${board.id}번 게시물을 저장하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      닫기
+                  </button>
+                  <button form="updateForm1" class="btn btn-primary">
+                      저장
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
