@@ -15,6 +15,10 @@
 
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
+<%-- 수정/삭제 권한 --%>
+<c:set value="${sessionScope.loggedInMember.id == member.id}" var="hasAccess"/>
+
+
 <%--div.container>div.row>div.col--%>
 <div class="container">
     <div class="row justify-content-center">
@@ -35,7 +39,9 @@
                 <div class="input-group">
                     <input value="${member.password}" readonly id="inputPassword1" name="password" type="text"
                            class="form-control">
-                    <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-primary">변경</a>
+                    <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-secondary">
+                        변경
+                    </a>
                 </div>
             </div>
             <div class="mb-3">
@@ -64,50 +70,55 @@
                        readonly>
             </div>
             <div class="mb-3">
-                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal1">
-                    <i class="fa-solid fa-user-minus"></i>
-                    탈퇴
-                </button>
-                <a class="btn btn-outline-primary" href="/member/edit?id=${member.id}">
-                    <i class="fa-solid fa-user-pen"></i>
-                    수정
-                </a>
+                <c:if test="${hasAccess}">
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal1">
+                        <i class="fa-solid fa-user-minus"></i>
+                        탈퇴
+                    </button>
+                    <a class="btn btn-outline-primary" href="/member/edit?id=${member.id}">
+                        <i class="fa-solid fa-user-pen"></i>
+                        수정
+                    </a>
+                </c:if>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">탈퇴 확인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <form action="/member/delete" method="post" id="deleteForm1">
-                        <input type="hidden" name="id" value="${member.id}">
-                        <label for="inputPassword2" class="form-label">
-                            암호
-                        </label>
-                        <input class="form-control" type="text" name="password" id="inputPassword2">
-                    </form>
+<c:if test="${hasAccess}">
+    <!-- Modal -->
+    <div class="modal fade" id="deleteConfirmModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">탈퇴 확인</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form action="/member/delete" method="post" id="deleteForm1">
+                            <input type="hidden" name="id" value="${member.id}">
+                            <label for="inputPassword2" class="form-label">
+                                암호
+                            </label>
+                            <input class="form-control" type="text" name="password" id="inputPassword2">
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        닫기
+                    </button>
+                    <button form="deleteForm1" class="btn btn-danger">
+                        탈퇴
+                    </button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    닫기
-                </button>
-                <button form="deleteForm1" class="btn btn-danger">
-                    탈퇴
-                </button>
-            </div>
         </div>
     </div>
-</div>
+</c:if>
+
 
 
 
