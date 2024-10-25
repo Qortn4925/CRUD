@@ -2,14 +2,13 @@ package com.example.prjjsp20241022.controller;
 
 
 import com.example.prjjsp20241022.dto.Board;
+import com.example.prjjsp20241022.dto.Member;
 import com.example.prjjsp20241022.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -23,7 +22,21 @@ public class BoardController {
     private  final BoardService service;
 
     @GetMapping("new")
-    public void newBoard(){}
+    public String newBoard(@SessionAttribute(value = "loggedInMember",required = false) Member member,RedirectAttributes rttr) {
+//        Object o = session.getAttribute("loggedInMember");
+//        Member m= (Member) o;  >>  @SessionAttribute
+        if(member == null){
+        // 로그인 안한 상태
+
+            rttr.addFlashAttribute("message", Map.of("type","success" ,
+                    "text" ,"로그인한 사용자만 이용가능합니다.") );
+            return "redirect:/member/login";
+
+        }else {
+            //로그인 한 상태
+            return "board/new";
+        }
+    }
 
     @PostMapping("new")
     public String newBoard(Board board ,RedirectAttributes rttr){
