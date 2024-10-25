@@ -34,6 +34,9 @@ public interface BoardMapper {
     """)
     Board selectById(Integer id);
 
+
+
+
     @Delete("""
     delete from board
     where id =#{id}

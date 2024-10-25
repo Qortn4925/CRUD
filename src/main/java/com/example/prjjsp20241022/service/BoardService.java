@@ -72,8 +72,14 @@ pageInfo.put("leftPageNumber",leftPageNumber);
         return mapper.selectById(id);
     }
 
-    public void remove(Integer id) {
-        mapper.delete(id);
+    public void remove(Integer id, Member member) {
+        Board board = mapper.selectById(id);
+
+        if(board.getWriter().equals(member.getId())) {
+            mapper.delete(id);
+        } else{
+            throw new RuntimeException("삭제 권한이 없습니다.");
+        }
     }
 
 
