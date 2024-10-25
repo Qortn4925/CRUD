@@ -45,14 +45,11 @@ public class MemberController {
                 List<Member> members = service.viewMember();
                 model.addAttribute("memberList", members);
                 return  null;
-
             }else {
-
                 rttr.addFlashAttribute("message", Map.of
                         ("type", "warning", "text", "로그인 한 사용자만 이용하실 수 있습니다.")
                 );
                 return "redirect:/member/login";
-
             }
 
     }
