@@ -21,12 +21,12 @@
 </style>
 </head>
 <body>
+<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
 <h2> 게시물 목록</h2>
 
 
-
 <div class="table">
-    <c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
+
 
     <div>
         <div>

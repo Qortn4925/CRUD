@@ -32,8 +32,11 @@
                 <label for="inputPassword1" class="form-label">
                     암호
                 </label>
-                <input value="${member.password}" readonly id="inputPassword1" name="password" type="text"
-                       class="form-control">
+                <div class="input-group">
+                    <input value="${member.password}" readonly id="inputPassword1" name="password" type="text"
+                           class="form-control">
+                    <a href="/member/edit-password?id=${member.id}" class="btn btn-outline-primary">변경</a>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="inputNickName1" class="form-label">
@@ -105,6 +108,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

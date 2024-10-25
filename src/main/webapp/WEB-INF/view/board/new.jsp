@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
 
 <h2 class="my-3">새 게시물 작성</h2>
-<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
 
             <form action=""method="post">
                 <div class="mb-3">
