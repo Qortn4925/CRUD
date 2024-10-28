@@ -29,8 +29,9 @@ public interface BoardMapper {
     List<Board> selectAll();
 
     @Select("""
-    select * from board
-    WHERE id =#{id}
+    select b.id,b.title,b.content,b.inserted ,m.nick_name writerNickName from board b join member m  
+         on b.id = m.id
+    WHERE  b.id =#{id}
     """)
     Board selectById(Integer id);
 
@@ -91,3 +92,6 @@ public interface BoardMapper {
     Integer countAll(String keyword,String searchTarget);
 
 }
+
+
+

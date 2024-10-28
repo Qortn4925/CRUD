@@ -33,7 +33,7 @@
           <div class="mb-3">
             <label for="inputWriter" class="form-label"></label>
               작성자
-              <input class="form-control" id="inputWriter" type="text" value="${board.writer}" readonly>
+              <input class="form-control" id="inputWriter" type="text" value="${board.writerNickName}" readonly>
           </div>
           <div class="mb-3">
             <label for="inputDate" class="form-label">  작성일시</label>
