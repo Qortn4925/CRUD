@@ -59,9 +59,33 @@
     </div>
 </div>
 
+<%-- 검색 form --%>
+<%-- TODO : css 다듬기 --%>
+<%--div.container>div.row>div.col-2+div.col-4+div.col-1--%>
+<div class="container">
+    <form class="row justify-content-center">
+        <div class="col-2 col-lg-1">
+            <select name="searchTarget" id="select1" class="form-select">
+                <option value="all">전체</option>
+                <option value="title" ${param.searchTarget=='title'?'selected':''}>제목</option>
+                <option value="content"${param.searchTarget=='content'?'selected':''}>본문</option>
+                <option value="writer"${param.searchTarget=='writer'?'selected':''}>작성자</option>
+            </select>
+        </div>
+        <div class="col-4 col-lg-2">
+            <input type="text" class="form-control" name="keyword" value="${param.keyword}">
+        </div>
+        <div class="col-1">
+            <button class="btn btn-outline-primary h-100">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
 
 <nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul class="pagination justify-content-center">
         <%--    dlwjs--%>
         <c:if test="${pageInfo.hasPrevPage}">
                 <li class="page-item">
@@ -89,6 +113,8 @@
         </c:if>
     </ul>
 </nav>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

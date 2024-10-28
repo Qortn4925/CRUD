@@ -26,14 +26,14 @@ public class BoardService {
 
 
 
-    public Map<String,Object> list(Integer page) {
+    public Map<String,Object> list(Integer page, String searchTarget, String keyword) {
         // List<Board> list= mapper.selectAll();
         // g한 페이지 10개
         Integer offset = (page - 1) * 10;
 
 
 
-        List<Board> list = mapper.selectAllPaging(offset);
+        List<Board> list = mapper.selectAllPaging(offset,searchTarget,keyword);
 
         // Controller에게 넘겨 줄 정보들을 담을 map
         Map<String, Object> map = new HashMap<>();
