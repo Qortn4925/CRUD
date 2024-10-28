@@ -21,3 +21,8 @@ from board;
 
 select*
 from board;
+
+# 게시물의 writer 값을 member에 있는 값으로 update
+update board
+set writer = (select id from member LIMIT 1)
+where id > 0;
