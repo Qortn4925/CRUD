@@ -30,9 +30,6 @@ public class BoardService {
         // List<Board> list= mapper.selectAll();
         // g한 페이지 10개
         Integer offset = (page - 1) * 10;
-
-
-
         List<Board> list = mapper.selectAllPaging(offset,searchTarget,keyword);
 
         // Controller에게 넘겨 줄 정보들을 담을 map
@@ -69,7 +66,8 @@ pageInfo.put("leftPageNumber",leftPageNumber);
     }
 
     public Board get(Integer id) {
-        return mapper.selectById(id);
+        Board board = mapper.selectById(id);
+        return  board;
     }
 
     public void remove(Integer id, Member member) {

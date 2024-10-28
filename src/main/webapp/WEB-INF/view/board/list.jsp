@@ -23,42 +23,42 @@
         }
     </style>
 </head>
-<body>
-<c:import url="/WEB-INF/fragment/navbar.jsp"></c:import>
-<h2> 게시물 목록</h2>
-
-
-<div class="table">
-
-
-    <div>
-        <div>
-
+<body><c:import url="/WEB-INF/fragment/navbar.jsp">
+    <c:param name="active" value="list"/>
+</c:import>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="my-3">게시물 목록</h2>
             <table class="table">
-
                 <thead>
                 <tr>
-                    <th>번호</th>
+                    <th>
+                        <i class="fa-solid fa-hashtag"></i>
+                    </th>
                     <th class="w-50">제목</th>
                     <th>
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-regular fa-user"></i>
                     </th>
                     <th class="d-none d-lg-table-cell">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-regular fa-calendar-days"></i>
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${boardList}" var="board">
                     <tr>
-                        <td> ${board.id}</td>
+                        <td>${board.id}</td>
                         <td>
-                            <a href="/board/view?id=${board.id}">${board.title} </a>
+                            <a href="/board/view?id=${board.id}">
+                                    ${board.title}
+                            </a>
                         </td>
-                        <td> ${board.writer}</td>
-                        <td class="d-none d-lg-table-cell"> ${board.inserted}</td>
+                        <td>${board.writerNickName}</td>
+                        <td class="d-none d-lg-table-cell">${board.inserted}</td>
                     </tr>
                 </c:forEach>
+
                 </tbody>
             </table>
 
@@ -67,22 +67,21 @@
 </div>
 
 <%-- 검색 form --%>
-<%-- TODO : css 다듬기 --%>
 <%--div.container>div.row>div.col-2+div.col-4+div.col-1--%>
-<div class="container">
-    <form class="row justify-content-center">
-        <div class="col-2 col-lg-1">
+<div class="container my-3">
+    <form class="row justify-content-center g-1">
+        <div class="col-auto">
             <select name="searchTarget" id="select1" class="form-select">
                 <option value="all">전체</option>
-                <option value="title" ${param.searchTarget=='title'?'selected':''}>제목</option>
-                <option value="content"${param.searchTarget=='content'?'selected':''}>본문</option>
-                <option value="writer"${param.searchTarget=='writer'?'selected':''}>작성자</option>
+                <option value="title" ${param.searchTarget == 'title' ? 'selected' : ''}>제목</option>
+                <option value="content" ${param.searchTarget == 'content' ? 'selected' : ''}>본문</option>
+                <option value="writer" ${param.searchTarget == 'writer' ? 'selected' : ''}>작성자</option>
             </select>
         </div>
-        <div class="col-4 col-lg-2">
+        <div class="col-6 col-md-4 col-lg-3">
             <input type="text" class="form-control" name="keyword" value="${param.keyword}">
         </div>
-        <div class="col-1">
+        <div class="col-auto">
             <button class="btn btn-outline-primary h-100">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -90,38 +89,43 @@
     </form>
 </div>
 
-
-<nav aria-label="Page navigation example">
+<%-- bootstrap pagination --%>
+<nav class="mt-4">
     <ul class="pagination justify-content-center">
-        <%--    dlwjs--%>
         <c:if test="${pageInfo.hasPrevPage}">
+            <c:url value="/board/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.prevPageNumber}"></c:param>
+                <c:param name="searchTarget" value="${param.searchTarget}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
+            </c:url>
             <li class="page-item">
-                <a class="page-link" href="/board/list?page=${pageInfo.previousPageNumber}">
-                    <i class="fa-solid fa-arrow-left"></i>
+                <a href="${pageLink}" class="page-link">
+                    &laquo;
                 </a>
             </li>
         </c:if>
-        <%--     pagination --%>
         <c:forEach begin="${pageInfo.leftPageNumber}"
                    end="${pageInfo.rightPageNumber}"
                    var="pageNumber">
-            <c:url value="" var="pagetLink">
+            <c:url value="/board/list" var="pageLink">
                 <c:param name="page" value="${pageNumber}"></c:param>
-                <c:param name="searchTarget" value="${param.searchTarget}"></c:param>
-                <c:param name="keyword" value="${param.keyword}"></c:param>
+                <c:param name="searchTarget" value="${param.searchTarget}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
             </c:url>
-            <li class="page-item">
-                <a class="${pageInfo.currentPageNumber == pageNumber?'active':''}
-            page-link" href="${pagetLink}">
-                        ${pageNumber}
-                </a>
+            <li class="page-item ${pageInfo.currentPageNumber == pageNumber ? 'active' : ''}">
+                <a href="${pageLink}"
+                   class="page-link">${pageNumber}</a>
             </li>
         </c:forEach>
-
         <c:if test="${pageInfo.hasNextPage}">
+            <c:url value="/board/list" var="pageLink">
+                <c:param name="page" value="${pageInfo.nextPageNumber}"></c:param>
+                <c:param name="searchTarget" value="${param.searchTarget}"/>
+                <c:param name="keyword" value="${param.keyword}"/>
+            </c:url>
             <li class="page-item">
-                <a class="page-link" href="/board/list?page=${pageInfo.nextPageNumber}">
-                    <i class="fa-solid fa-arrow-right"></i>
+                <a href="${pageLink}" class="page-link">
+                    &raquo;
                 </a>
             </li>
         </c:if>
