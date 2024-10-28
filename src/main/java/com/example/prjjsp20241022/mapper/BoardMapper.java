@@ -97,6 +97,11 @@ public interface BoardMapper {
 """)
     Integer countAll(String keyword,String searchTarget);
 
+        @Delete("""
+        delete  from board
+        where writer=#{memberId}
+""")
+    int deleteByMemberId(String memberId);
 }
 
 

@@ -36,10 +36,14 @@ public class MemberService {
 
     public boolean remove(String id, String password) {
         // 게시물 먼저 삭제후 회원 삭제 (외래키 참조 무결성?)
-        boardMapper.deleteByMemberId(id);
-
-
-        int cnt = mapper.deleteByIdAndPassword(id, password);
+        // id, password, 먼저 조회 후 삭제 >  맞아야 삭제 , 아니면 이미 지우는 쿼리 실행하고 커밋했는데 ,. 비번 틀리면 삭제 안되니까
+        int cnt = 0;
+        Member member = mapper.selectById(id);;
+        if(member.getPassword().equals(password)){
+            boardMapper.deleteByMemberId(id);
+             cnt = mapper.deleteByIdAndPassword(id, password);
+        }
+        //
         return cnt == 1;
     }
 
