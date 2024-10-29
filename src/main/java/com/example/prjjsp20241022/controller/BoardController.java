@@ -58,9 +58,6 @@ public class BoardController {
 
         Map<String,Object> result = service.list(page,searchTarget,keyword);
         model.addAllAttributes(result);
-
-
-
     }
 
     @GetMapping("view")
