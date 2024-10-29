@@ -41,6 +41,8 @@ public class BoardService {
 
         Integer rightPageNumber = ( (page-1) / 10 +1)*10 ;
         Integer leftPageNumber = rightPageNumber - 9;
+
+
         Integer nextPageNumber = rightPageNumber + 1;
         Integer previousPageNumber = leftPageNumber - 1;
 

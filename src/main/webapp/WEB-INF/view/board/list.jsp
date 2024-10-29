@@ -104,6 +104,7 @@
                 </a>
             </li>
         </c:if>
+
         <c:forEach begin="${pageInfo.leftPageNumber}"
                    end="${pageInfo.rightPageNumber}"
                    var="pageNumber">
@@ -117,6 +118,7 @@
                    class="page-link">${pageNumber}</a>
             </li>
         </c:forEach>
+
         <c:if test="${pageInfo.hasNextPage}">
             <c:url value="/board/list" var="pageLink">
                 <c:param name="page" value="${pageInfo.nextPageNumber}"></c:param>
