@@ -91,7 +91,6 @@ public class MemberController {
             return "redirect:/member/login";
         }
 
-
     }
 
 
@@ -184,9 +183,7 @@ public class MemberController {
             );
             session.setAttribute("loggedInMember",member);
             return "redirect:/board/list";
-            
         }
-
     }
 
     @RequestMapping("logout")
